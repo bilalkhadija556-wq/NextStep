@@ -9,17 +9,21 @@ body {
     background-color: #101b45;
     padding: 18px 0;
 }
+
 .navbar-brand span,
 .footer h4 span {
     color: #a5b4fc;
 }
+
 .nav-link {
     color: #e2e8f0 !important;
     margin: 0 8px;
 }
-.nav-link:hover {
-    color: #a5b4fc !important;
-}
+
+    .nav-link:hover {
+        color: #a5b4fc !important;
+    }
+
 .signup-btn {
     color: #18234f;
     font-weight: 600;
@@ -31,6 +35,7 @@ body {
     padding: 100px 0;
     overflow: hidden;
 }
+
 .hero-label {
     background-color: rgba(255, 255, 255, 0.13);
     padding: 10px 18px;
@@ -39,31 +44,37 @@ body {
     letter-spacing: 2px;
     color: #c7d2fe;
 }
+
 .hero-title {
     font-size: 55px;
     font-weight: 800;
     line-height: 1.2;
 }
-.hero-title span {
-     color: #a5b4fc;
-}
+
+    .hero-title span {
+        color: #a5b4fc;
+    }
+
 .hero-description {
     color: #dbeafe;
     font-size: 18px;
     line-height: 1.8;
     max-width: 570px;
 }
+
 .explore-btn {
     color: #202b62;
     font-weight: 600;
 }
+
 .hero-note {
     color: #c7d2fe;
     font-size: 14px;
 }
-.hero-note span {
-    color: #facc15;
-}
+
+    .hero-note span {
+        color: #facc15;
+    }
 /* Hero Visual */
 .hero-visual {
     height: 350px;
@@ -72,6 +83,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .main-circle {
     width: 250px;
     height: 250px;
@@ -82,9 +94,11 @@ body {
     justify-content: center;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
-.main-circle span {
-    font-size: 110px;
-}
+
+    .main-circle span {
+        font-size: 110px;
+    }
+
 .floating-card {
     position: absolute;
     background-color: white;
@@ -96,25 +110,31 @@ body {
     gap: 12px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
-.floating-card > span {
-    font-size: 30px;
-}
-.floating-card strong {
-     display: block;
-     font-size: 14px;
-}
-.floating-card small {
-     color: #64748b;
-     font-size: 11px;
-}
+
+    .floating-card > span {
+        font-size: 30px;
+    }
+
+    .floating-card strong {
+        display: block;
+        font-size: 14px;
+    }
+
+    .floating-card small {
+        color: #64748b;
+        font-size: 11px;
+    }
+
 .card-one {
     top: 35px;
     left: 0;
 }
+
 .card-two {
     bottom: 35px;
     right: 0;
 }
+
 .small-decoration {
     position: absolute;
     width: 35px;
@@ -129,52 +149,63 @@ body {
     padding: 90px 0;
     background-color: #ffffff;
 }
+
 .section-heading > span {
     color: #6366f1;
     font-weight: bold;
     font-size: 12px;
     letter-spacing: 2px;
 }
+
 .section-heading h2 {
     font-size: 34px;
     font-weight: 800;
     margin-top: 12px;
 }
+
 .section-heading p {
     color: #64748b;
     max-width: 650px;
     margin: 15px auto;
     line-height: 1.7;
 }
+
 .opportunity-card {
     padding: 40px;
     border-radius: 18px;
     height: 100%;
     transition: transform 0.3s, box-shadow 0.3s;
 }
-.opportunity-card:hover {
-     transform: translateY(-8px);
-     box-shadow: 0 15px 35px rgba(30, 41, 90, 0.12);
-}
+
+    .opportunity-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(30, 41, 90, 0.12);
+    }
+
 .internship-card {
     background-color: #eef2ff;
 }
+
 .scholarship-card {
     background-color: #f5f0ff;
 }
+
 .card-icon {
     font-size: 45px;
     margin-bottom: 20px;
 }
+
 .opportunity-card h3 {
     font-weight: 700;
     font-size: 23px;
 }
+
 .opportunity-card p {
     color: #64748b;
     line-height: 1.8;
     margin: 18px 0;
 }
+
 .opportunity-card a {
     color: #4f46e5;
     text-decoration: none;
@@ -186,36 +217,43 @@ body {
     padding: 75px 15px;
     color: white;
 }
-.cta-section h2 {
-     font-size: 34px;
-     font-weight: 800;
-}
-.cta-section p {
-     color: #e0e7ff;
-     margin: 18px 0 25px;
-}
+
+    .cta-section h2 {
+        font-size: 34px;
+        font-weight: 800;
+    }
+
+    .cta-section p {
+        color: #e0e7ff;
+        margin: 18px 0 25px;
+    }
 /* Footer */
 .footer {
     background-color: #101b45;
     color: white;
     padding: 40px 0;
 }
-.footer p {
-     color: #cbd5e1;
-     margin: 12px 0;
-}
+
+    .footer p {
+        color: #cbd5e1;
+        margin: 12px 0;
+    }
+
 .footer-links {
     margin: 20px 0;
 }
-.footer-links a {
-     color: #cbd5e1;
-     text-decoration: none;
-     margin: 0 12px;
-     font-size: 14px;
-}
-.footer-links a:hover {
-       color: white;
-}
+
+    .footer-links a {
+        color: #cbd5e1;
+        text-decoration: none;
+        margin: 0 12px;
+        font-size: 14px;
+    }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
 .footer small {
     color: #94a3b8;
 }
@@ -277,6 +315,7 @@ body {
     align-items: center;
     padding: 40px 15px;
 }
+
 .login-card {
     background: white;
     width: 100%;
@@ -285,6 +324,7 @@ body {
     border-radius: 18px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
+
 .login-brand {
     display: block;
     text-align: center;
@@ -294,28 +334,34 @@ body {
     text-decoration: none;
     margin-bottom: 25px;
 }
-.login-brand span {
-     color: #7864d8;
-}
+
+    .login-brand span {
+        color: #7864d8;
+    }
+
 .login-card h2 {
     text-align: center;
     font-weight: bold;
     color: #202b50;
 }
+
 .login-description {
     text-align: center;
     color: #777;
     margin-bottom: 30px;
 }
+
 .login-card .form-label {
     font-weight: 600;
     color: #333;
 }
+
 .login-card .form-control,
 .login-card .form-select {
     padding: 12px;
     border-radius: 8px;
 }
+
 .login-btn {
     background: #5141a5;
     color: white;
@@ -323,20 +369,24 @@ body {
     font-weight: 600;
     border-radius: 8px;
 }
-.login-btn:hover {
-     background: #392c83;
-     color: white;
-}
+
+    .login-btn:hover {
+        background: #392c83;
+        color: white;
+    }
+
 .signup-text {
     text-align: center;
     margin-top: 25px;
     color: #666;
 }
-.signup-text a {
-     color: #5141a5;
-     font-weight: bold;
-     text-decoration: none;
-}
+
+    .signup-text a {
+        color: #5141a5;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
 .back-home {
     display: block;
     text-align: center;
@@ -353,6 +403,7 @@ body {
     align-items: center;
     padding: 40px 15px;
 }
+
 .signup-card {
     background: white;
     width: 100%;
@@ -361,6 +412,7 @@ body {
     border-radius: 18px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
+
 .signup-brand {
     display: block;
     text-align: center;
@@ -370,27 +422,33 @@ body {
     text-decoration: none;
     margin-bottom: 20px;
 }
+
     .signup-brand span {
         color: #7864d8;
     }
+
 .signup-card h2 {
     text-align: center;
     font-weight: bold;
     color: #202b50;
 }
+
 .signup-description {
     text-align: center;
     color: #777;
     margin-bottom: 25px;
 }
+
 .signup-card .form-label {
     font-weight: 600;
     color: #333;
 }
+
 .signup-card .form-control {
     padding: 11px;
     border-radius: 8px;
 }
+
 .signup-btn {
     background: #5141a5;
     color: white;
@@ -398,15 +456,18 @@ body {
     font-weight: 600;
     border-radius: 8px;
 }
+
     .signup-btn:hover {
         background: #392c83;
         color: white;
     }
+
 .login-text {
     text-align: center;
     margin-top: 25px;
     color: #666;
 }
+
     .login-text a {
         color: #5141a5;
         font-weight: bold;

@@ -1,0 +1,180 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold fs-3"
+           asp-controller="Home"
+           asp-action="Index">
+            🎓 NextStep<span>.</span>
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       asp-controller="Home"
+                       asp-action="Index">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       asp-controller="Student"
+                       asp-action="Index">
+                        Opportunities
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-outline-light px-4"
+                       asp-area="Identity"
+                       asp-page="/Account/Login">
+                        Login
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                    <a class="btn btn-light signup-btn px-4"
+                       asp-area="Identity"
+                       asp-page="/Account/Register">
+                        Sign Up
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Hero Section -->
+<section class="hero-section">
+
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Hero Text -->
+            <div class="col-lg-7">
+
+                <span class="hero-label">
+                    YOUR FUTURE STARTS HERE
+                </span>
+                <h1 class="hero-title mt-3">
+                    Discover Your Next
+                    <span>Big Opportunity.</span>
+                </h1>
+                <p class="hero-description mt-4">
+                    Your journey towards success starts with the
+                    right opportunity. Explore internships and
+                    scholarships that bring you closer to your dreams.
+                </p>
+
+                <div class="mt-4">
+                    <a asp-controller="Student"
+                       asp-action="Index"
+                       asp-fragment="internships"
+                       class="btn btn-light btn-lg explore-btn">
+                        Explore Internships →
+                    </a>
+                    <a asp-controller="Student"
+                       asp-action="Index"
+                       asp-fragment="scholarships"
+                       class="btn btn-outline-light btn-lg ms-2">
+                        Explore Scholarships →
+                    </a>
+
+                </div>
+
+                <div class="hero-note mt-4">
+                    <span>✦</span> Explore. Learn. Grow. Succeed.
+                </div>
+
+            </div>
+            <!-- Hero Visual -->
+            <div class="col-lg-5 mt-5 mt-lg-0">
+                <div class="hero-visual">
+                    <div class="main-circle">
+                        <span>🎓</span>
+                    </div>
+
+                    <div class="floating-card card-one">
+                        <span>💼</span>
+                        <div>
+                            <strong>Internships</strong>
+                            <small>Build your experience</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-card card-two">
+                        <span>🏆</span>
+                        <div>
+                            <strong>Scholarships</strong>
+                            <small>Invest in your future</small>
+                        </div>
+                    </div>
+                    <div class="small-decoration"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section -->
+<section class="categories-section">
+
+    <div class="container">
+        <div class="section-heading text-center">
+            <span>EXPLORE YOUR POSSIBILITIES</span>
+            <h2>Find The Right Opportunity For You</h2>
+            <p>
+                Whether you're looking to gain experience or
+                support your education, your next step starts here.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- Call To Action -->
+<section class="cta-section">
+    <div class="container text-center">
+        <h2>Ready to Take Your Next Step?</h2>
+        <p>
+            Start exploring opportunities and move closer
+            to your future goals.
+        </p>
+        <a asp-area="Identity"
+           asp-page="/Account/Register"
+           class="btn btn-light btn-lg">
+            Get Started Today →
+        </a>
+    </div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+
+    <div class="container text-center">
+        <h4>Next<span>Step.</span></h4>
+        <p>
+            Find Opportunities. Shape Your Future.
+        </p>
+        <div class="footer-links">
+            <a asp-controller="Home" asp-action="Index">
+                Home
+            </a>
+            <a asp-controller="Student" asp-action="Index">
+                Opportunities
+            </a>
+        </div>
+        <small>© 2026 NextStep. All Rights Reserved.</small>
+    </div>
+</footer>
+
+
+

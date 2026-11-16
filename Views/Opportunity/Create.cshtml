@@ -1,0 +1,77 @@
+﻿@model NextStepMVC.Models.Opportunity
+
+@{
+    ViewData["Title"] = "Add Opportunity";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <h2 class="mb-4">Add New Opportunity</h2>
+
+            <form asp-controller="Opportunity" asp-action="Create" method="post">
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label">Opportunity Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter opportunity title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Organization" class="form-label">Organization</label>
+                    <input asp-for="Organization" class="form-control" placeholder="Enter company or university name" />
+                    <span asp-validation-for="Organization" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Type" class="form-label">Opportunity Type</label>
+                    <select asp-for="Type" class="form-select">
+                        <option value="">Select Type</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Scholarship">Scholarship</option>
+                    </select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter opportunity details"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Location" class="form-label">Location</label>
+                    <input asp-for="Location" class="form-control" placeholder="e.g. Lahore or Remote" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Deadline" class="form-label">Application Deadline</label>
+                    <input asp-for="Deadline" type="date" class="form-control" />
+                    <span asp-validation-for="Deadline" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ApplicationLink" class="form-label">Official Application Link</label>
+                    <input asp-for="ApplicationLink" class="form-control" placeholder="https://example.com/apply" />
+                    <span asp-validation-for="ApplicationLink" class="text-danger"></span>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Save Opportunity</button>
+
+                    <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary ms-2">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

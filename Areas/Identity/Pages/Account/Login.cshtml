@@ -1,0 +1,87 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="login-section">
+
+    <div class="login-card">
+
+        <a asp-area=""
+           asp-controller="Home"
+           asp-action="Index"
+           class="login-brand">
+            🎓 NextStep<span>.</span>
+        </a>
+
+        <h2>Welcome Back!</h2>
+
+        <p class="login-description">
+            Login to discover opportunities and take your next step.
+        </p>
+
+        <form id="account"
+              method="post"
+              asp-route-returnUrl="@Model.ReturnUrl">
+
+            <div asp-validation-summary="All"
+                 class="text-danger mb-3"
+                 role="alert"></div>
+
+            <div class="mb-3">
+                <label asp-for="Input.Email" class="form-label">
+                    Email Address
+                </label>
+
+                <input asp-for="Input.Email"
+                       class="form-control"
+                       autocomplete="username"
+                       placeholder="Enter your email" />
+
+                <span asp-validation-for="Input.Email"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Input.Password" class="form-label">
+                    Password
+                </label>
+
+                <input asp-for="Input.Password"
+                       class="form-control"
+                       autocomplete="current-password"
+                       placeholder="Enter your password" />
+
+                <span asp-validation-for="Input.Password"
+                      class="text-danger"></span>
+            </div>
+
+            <button id="login-submit"
+                    type="submit"
+                    class="btn login-btn w-100">
+                Login
+            </button>
+
+        </form>
+
+        <p class="signup-text">
+            Don't have an account?
+            <a asp-page="./Register">Sign Up</a>
+        </p>
+
+        <a asp-area=""
+           asp-controller="Home"
+           asp-action="Index"
+           class="back-home">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
