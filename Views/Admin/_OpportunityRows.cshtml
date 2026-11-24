@@ -1,0 +1,61 @@
+﻿@model IEnumerable<NextStepMVC.Models.Opportunity>
+
+@using System.Linq
+
+@if (Model.Any())
+{
+    @foreach (var opportunity in Model)
+    {
+        <tr>
+            <td>@opportunity.Title</td>
+            <td>@opportunity.Type</td>
+            <td>@opportunity.Organization</td>
+            <td>@opportunity.Deadline.ToString("dd MMM yyyy")</td>
+
+            <td>
+                @if (opportunity.Deadline.Date < DateTime.Today)
+                {
+                    <span class="admin-status">Closed</span>
+                }
+                else if ((opportunity.Deadline.Date - DateTime.Today).Days <= 7)
+                {
+                    <span class="admin-status closing-status">Closing Soon</span>
+                }
+                else
+                {
+                    <span class="admin-status open-status">Open</span>
+                }
+            </td>
+
+            <td>
+                <a asp-controller="Opportunity"
+                   asp-action="Edit"
+                   asp-route-id="@opportunity.Id"
+                   class="admin-edit-btn">
+                    Edit
+                </a>
+
+                <form asp-controller="Opportunity"
+                      asp-action="Delete"
+                      asp-route-id="@opportunity.Id"
+                      method="post"
+                      class="delete-opportunity-form"
+                      style="display:inline;">
+
+                    <button type="submit" class="admin-delete-btn">
+                        Delete
+                    </button>
+
+                </form>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="6" class="text-center">
+            No opportunities have been added yet.
+        </td>
+    </tr>
+}

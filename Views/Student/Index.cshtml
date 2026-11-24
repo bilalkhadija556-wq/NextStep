@@ -120,11 +120,12 @@
                 Search for internships and scholarships that match your interests.
             </p>
 
-            <form asp-controller="Student" asp-action="Index"
-                  method="get" class="row g-2">
+            <form id="studentSearchForm" class="row g-2">
 
                 <div class="col-md-9">
-                    <input type="text" name="search" value="@Context.Request.Query["search"]"
+                    <input type="text"
+                           id="searchInput"
+                           name="search"
                            class="form-control"
                            placeholder="Search by title or organization">
                 </div>
@@ -216,196 +217,9 @@
 </section>
 
 
-<!-- Featured Internships -->
-<section class="student-featured-section" id="featured-internships">
-
-    <div class="container">
-
-        <div class="student-section-heading">
-            <h2>Featured Internships</h2>
-            <p>Explore internship opportunities to build your experience.</p>
-        </div>
-
-        <div class="row g-4">
-
-            @if (Model.Any(o => o.Type == "Internship"))
-            {
-                @foreach (var opportunity in Model.Where(o => o.Type == "Internship"))
-                {
-                    var daysLeft = (opportunity.Deadline.Date - DateTime.Today).Days;
-
-                    <div class="col-md-6 col-lg-4">
-
-                        <div class="student-opportunity-card">
-
-                            @if (daysLeft < 0)
-                            {
-                                <span class="opportunity-status closing-status">
-                                    Closed
-                                </span>
-                            }
-                            else if (daysLeft <= 7)
-                            {
-                                <span class="opportunity-status closing-status">
-                                    Closing Soon
-                                </span>
-                            }
-                            else
-                            {
-                                <span class="opportunity-status open-status">
-                                    Open
-                                </span>
-                            }
-
-                            <h4>@opportunity.Title</h4>
-
-                            <p class="opportunity-organization">
-                                @opportunity.Organization
-                            </p>
-
-                            <p>
-                                @opportunity.Description
-                            </p>
-
-                            <p>
-                                <strong>Location:</strong> @opportunity.Location
-                            </p>
-
-                            <div class="opportunity-deadline">
-                                <strong>Deadline:</strong>
-                                @opportunity.Deadline.ToString("dd MMMM yyyy")
-                            </div>
-
-                            @if (daysLeft >= 0)
-                            {
-                                <a href="@opportunity.ApplicationLink"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="student-view-btn">
-                                    Apply Now →
-                                </a>
-                            }
-                            else
-                            {
-                                <span class="student-view-btn">
-                                    Applications Closed
-                                </span>
-                            }
-
-                        </div>
-
-                    </div>
-                }
-            }
-            else
-            {
-                <div class="col-12">
-                    <p>No internships are available at the moment.</p>
-                </div>
-            }
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Featured Scholarships -->
-<section class="student-featured-section scholarship-featured"
-         id="featured-scholarships">
-
-    <div class="container">
-
-        <div class="student-section-heading">
-            <h2>Featured Scholarships</h2>
-            <p>Find financial support for your education.</p>
-        </div>
-
-        <div class="row g-4">
-
-            @if (Model.Any(o => o.Type == "Scholarship"))
-            {
-                @foreach (var opportunity in Model.Where(o => o.Type == "Scholarship"))
-                {
-                    var daysLeft = (opportunity.Deadline.Date - DateTime.Today).Days;
-
-                    <div class="col-md-6 col-lg-4">
-
-                        <div class="student-opportunity-card">
-
-                            @if (daysLeft < 0)
-                            {
-                                <span class="opportunity-status closing-status">
-                                    Closed
-                                </span>
-                            }
-                            else if (daysLeft <= 7)
-                            {
-                                <span class="opportunity-status closing-status">
-                                    Closing Soon
-                                </span>
-                            }
-                            else
-                            {
-                                <span class="opportunity-status open-status">
-                                    Open
-                                </span>
-                            }
-
-                            <h4>@opportunity.Title</h4>
-
-                            <p class="opportunity-organization">
-                                @opportunity.Organization
-                            </p>
-
-                            <p>
-                                @opportunity.Description
-                            </p>
-
-                            <p>
-                                <strong>Location:</strong> @opportunity.Location
-                            </p>
-
-                            <div class="opportunity-deadline">
-                                <strong>Deadline:</strong>
-                                @opportunity.Deadline.ToString("dd MMMM yyyy")
-                            </div>
-
-                            @if (daysLeft >= 0)
-                            {
-                                <a href="@opportunity.ApplicationLink"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="student-view-btn">
-                                    Apply Now →
-                                </a>
-                            }
-                            else
-                            {
-                                <span class="student-view-btn">
-                                    Applications Closed
-                                </span>
-                            }
-
-                        </div>
-
-                    </div>
-                }
-            }
-            else
-            {
-                <div class="col-12">
-                    <p>No scholarships are available at the moment.</p>
-                </div>
-            }
-
-        </div>
-
-    </div>
-
-</section>
-
+<div id="opportunityResults">
+    @await Html.PartialAsync("_OpportunityResults", Model)
+</div>
 
 <!-- Footer -->
 <footer class="student-footer">
@@ -425,3 +239,24 @@
     </div>
 
 </footer>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#studentSearchForm").submit(function (e) {
+
+                e.preventDefault();
+
+                var search = $("#searchInput").val();
+
+                $.get("/Student/Search", { search: search }, function (data) {
+
+                    $("#opportunityResults").html(data);
+
+                });
+
+            });
+
+        });
+    </script>
+}

@@ -1,25 +1,24 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NextStepMVC.Data;
 using NextStepMVC.Models;
-using System.Linq;
+using NextStepMVC.Repositories.Interfaces;
 
 namespace NextStepMVC.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class OpportunityController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IOpportunityRepository _repository;
 
-        public OpportunityController(ApplicationDbContext context)
+        public OpportunityController(IOpportunityRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         // Display all opportunities
         public IActionResult Index()
         {
-            var opportunities = _context.Opportunities.ToList();
+            var opportunities = _repository.GetAll();
 
             return View(opportunities);
         }
@@ -41,9 +40,7 @@ namespace NextStepMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Opportunities.Add(opportunity);
-
-                _context.SaveChanges();
+                _repository.Add(opportunity);
 
                 return RedirectToAction("Index");
             }
@@ -54,7 +51,7 @@ namespace NextStepMVC.Controllers
         // Open the Edit Opportunity form
         public IActionResult Edit(int id)
         {
-            var opportunity = _context.Opportunities.Find(id);
+            var opportunity = _repository.GetById(id);
 
             if (opportunity == null)
             {
@@ -71,14 +68,16 @@ namespace NextStepMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Opportunities.Update(opportunity);
+                _repository.Update(opportunity);
 
-                _context.SaveChanges();
-
-                return RedirectToAction("Index");
+                return Json(new
+                {
+                    success = true,
+                    message = "Opportunity updated successfully."
+                });
             }
 
-            return View(opportunity);
+            return BadRequest(ModelState);
         }
 
         // Delete an opportunity
@@ -86,19 +85,16 @@ namespace NextStepMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var opportunity = _context.Opportunities.Find(id);
+            var opportunity = _repository.GetById(id);
 
             if (opportunity == null)
-            {
                 return NotFound();
-            }
 
-            _context.Opportunities.Remove(opportunity);
+            _repository.Delete(id);
 
-            _context.SaveChanges();
+            var opportunities = _repository.GetAll();
 
-            return RedirectToAction("Index", "Admin");
+            return PartialView("~/Views/Admin/_OpportunityRows.cshtml", opportunities);
         }
-
     }
 }

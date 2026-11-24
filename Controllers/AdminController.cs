@@ -1,24 +1,22 @@
-﻿
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using NextStepMVC.Data;
-using System.Linq;
+using NextStepMVC.Repositories.Interfaces;
 
 namespace NextStepMVC.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IOpportunityRepository _repository;
 
-        public AdminController(ApplicationDbContext context)
+        public AdminController(IOpportunityRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            var opportunities = _context.Opportunities.ToList();
+            var opportunities = _repository.GetAll();
 
             return View(opportunities);
         }

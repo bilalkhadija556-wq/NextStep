@@ -10,7 +10,10 @@
 
             <h2 class="mb-4">Edit Opportunity</h2>
 
-            <form asp-controller="Opportunity" asp-action="Edit" method="post">
+            <form id="editOpportunityForm"
+                  asp-controller="Opportunity"
+                  asp-action="Edit"
+                  method="post">
 
                 <input type="hidden" asp-for="Id" />
 
@@ -76,6 +79,50 @@
     </div>
 </div>
 
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(document).ready(function () {
+
+            $("#editOpportunityForm").submit(function (e) {
+
+                e.preventDefault();
+
+                var form = $(this);
+
+                if (!form.valid()) {
+                    return;
+                }
+
+                $.ajax({
+
+                    url: form.attr("action"),
+
+                    type: "POST",
+
+                    data: form.serialize(),
+
+                    success: function (response) {
+
+                        if (response.success) {
+                            alert(response.message);
+
+                            window.location.href = "/Admin/Index";
+                        }
+
+                    },
+
+                    error: function () {
+                        alert("Something went wrong while updating the opportunity.");
+                    }
+
+                });
+
+            });
+
+        });
+    </script>
 }
+

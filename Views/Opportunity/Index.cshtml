@@ -3,18 +3,23 @@
 @{
     ViewData["Title"] = "Manage Opportunities";
 }
+
 <div class="container py-5">
+
     <h2 class="mb-4">All Opportunities</h2>
+
     <div class="mb-4">
         <a asp-controller="Admin" asp-action="Index"
            class="btn btn-secondary">
             Back to Admin Dashboard
         </a>
     </div>
+
     @if (Model.Any())
     {
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
+
                 <thead class="table-dark">
                     <tr>
                         <th>Title</th>
@@ -24,6 +29,7 @@
                         <th>Deadline</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach (var opportunity in Model)
                     {
@@ -36,6 +42,7 @@
                         </tr>
                     }
                 </tbody>
+
             </table>
         </div>
     }
@@ -43,5 +50,6 @@
     {
         <p>No opportunities have been added yet.</p>
     }
+
 </div>
 

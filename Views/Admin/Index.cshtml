@@ -111,7 +111,7 @@
                 <div class="admin-stat-card">
                     <div class="admin-stat-icon">📋</div>
                     <h3>All Opportunities</h3>
-                    <p>@Model.Count() opportunities available.</p>
+                    <p><span id="totalCount">@Model.Count()</span> opportunities available.</p>
                 </div>
             </div>
 
@@ -119,7 +119,7 @@
                 <div class="admin-stat-card">
                     <div class="admin-stat-icon">💼</div>
                     <h3>Internships</h3>
-                    <p>@Model.Count(o => o.Type == "Internship") internships available.</p>
+                    <p><span id="internshipCount">@Model.Count(o => o.Type == "Internship")</span> internships available.</p>
                 </div>
             </div>
 
@@ -127,7 +127,7 @@
                 <div class="admin-stat-card">
                     <div class="admin-stat-icon">🏆</div>
                     <h3>Scholarships</h3>
-                    <p>@Model.Count(o => o.Type == "Scholarship") scholarships available.</p>
+                    <p><span id="scholarshipCount">@Model.Count(o => o.Type == "Scholarship")</span> scholarships available.</p>
                 </div>
             </div>
 
@@ -259,65 +259,8 @@
                     </tr>
                 </thead>
 
-                <tbody>
-
-                    @if (Model.Any())
-                    {
-                        @foreach (var opportunity in Model)
-                        {
-                            <tr>
-                                <td>@opportunity.Title</td>
-                                <td>@opportunity.Type</td>
-                                <td>@opportunity.Organization</td>
-                                <td>@opportunity.Deadline.ToString("dd MMM yyyy")</td>
-
-                                <td>
-                                    @if (opportunity.Deadline.Date < DateTime.Today)
-                                    {
-                                        <span class="admin-status">Closed</span>
-                                    }
-                                    else if ((opportunity.Deadline.Date - DateTime.Today).Days <= 7)
-                                    {
-                                        <span class="admin-status closing-status">Closing Soon</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="admin-status open-status">Open</span>
-                                    }
-                                </td>
-
-                                <td>
-                                    <a asp-controller="Opportunity"
-                                       asp-action="Edit"
-                                       asp-route-id="@opportunity.Id"
-                                       class="admin-edit-btn">
-                                        Edit
-                                    </a>
-
-                                    <form asp-controller="Opportunity"
-                                          asp-action="Delete"
-                                          asp-route-id="@opportunity.Id"
-                                          method="post"
-                                          style="display:inline;">
-
-                                        <button type="submit" class="admin-delete-btn">
-                                            Delete
-                                        </button>
-
-                                    </form>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="6" class="text-center">
-                                No opportunities have been added yet.
-                            </td>
-                        </tr>
-                    }
-
+                <tbody id="opportunityTableBody">
+                    @await Html.PartialAsync("_OpportunityRows", Model)
                 </tbody>
 
             </table>
@@ -346,3 +289,51 @@
     </div>
 
 </footer>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("submit", ".delete-opportunity-form", function (e) {
+
+                e.preventDefault();
+
+                var form = $(this);
+                var url = form.attr("action");
+
+                var token = form.find('input[name="__RequestVerificationToken"]').val();
+
+                if (confirm("Are you sure you want to delete this opportunity?")) {
+
+                    $.post(url, {
+                        __RequestVerificationToken: token
+                    }, function (data) {
+
+                        $("#opportunityTableBody").html(data);
+
+                        var total = $("#opportunityTableBody tr").filter(function () {
+                            return $(this).find("td").length === 6;
+                        }).length;
+
+                        var internships = $("#opportunityTableBody tr").filter(function () {
+                            return $(this).find("td:eq(1)").text().trim() === "Internship";
+                        }).length;
+
+                        var scholarships = $("#opportunityTableBody tr").filter(function () {
+                            return $(this).find("td:eq(1)").text().trim() === "Scholarship";
+                        }).length;
+
+                        $("#totalCount").text(total);
+                        $("#internshipCount").text(internships);
+                        $("#scholarshipCount").text(scholarships);
+
+                    });
+
+                }
+
+            });
+
+        });
+    </script>
+}
+

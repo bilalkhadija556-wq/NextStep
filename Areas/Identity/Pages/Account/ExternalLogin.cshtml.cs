@@ -85,7 +85,9 @@ public class ExternalLoginModel : PageModel
         [EmailAddress]
         public string Email { get; set; } = default!;
     }
+        
     public IActionResult OnGet() => RedirectToPage("./Login");
+
     public IActionResult OnPost(string provider, string? returnUrl = null)
     {
         // Request a redirect to the external login provider.
@@ -93,6 +95,7 @@ public class ExternalLoginModel : PageModel
         var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
         return new ChallengeResult(provider, properties);
     }
+
     public async Task<IActionResult> OnGetCallbackAsync(string? returnUrl = null, string? remoteError = null)
     {
         returnUrl = returnUrl ?? Url.Content("~/");
@@ -134,6 +137,7 @@ public class ExternalLoginModel : PageModel
             return Page();
         }
     }
+
     public async Task<IActionResult> OnPostConfirmationAsync(string? returnUrl = null)
     {
         returnUrl = returnUrl ?? Url.Content("~/");
@@ -192,6 +196,7 @@ public class ExternalLoginModel : PageModel
         ReturnUrl = returnUrl;
         return Page();
     }
+
     private ApplicationUser CreateUser()
     {
         try
@@ -205,6 +210,7 @@ public class ExternalLoginModel : PageModel
                 $"override the external login page in /Areas/Identity/Pages/Account/ExternalLogin.cshtml");
         }
     }
+
     private IUserEmailStore<ApplicationUser> GetEmailStore()
     {
         if (!_userManager.SupportsUserEmail)

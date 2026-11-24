@@ -1,3 +1,5 @@
+using NextStepMVC.Repositories;
+using NextStepMVC.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NextStepMVC.Data;
@@ -14,6 +16,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<IOpportunityRepository, OpportunityRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
